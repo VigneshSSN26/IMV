@@ -143,7 +143,7 @@ export default function UpdateProduct() {
 
                   <div className="col-md-6">
                     <label htmlFor="productPrice" className="form-label fw-semibold">
-                      <i className="fas fa-dollar-sign me-1"></i>
+                      <i className="fas fa-rupee-sign me-1"></i>
                       Product Price *
                     </label>
                     <input

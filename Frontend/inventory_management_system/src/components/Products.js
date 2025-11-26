@@ -190,7 +190,7 @@ export default function Products() {
                           </td>
                           <td>
                             <span className="badge bg-success fs-6">
-                              ${element.ProductPrice}
+                              ₹{element.ProductPrice}
                             </span>
                           </td>
                           <td>

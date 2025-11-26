@@ -108,7 +108,7 @@ const sendOutOfStockNotification = async (product) => {
               </div>
               <div class="detail-row">
                 <span class="label">Price:</span>
-                <span class="value">$${product.ProductPrice}</span>
+                <span class="value">₹${product.ProductPrice}</span>
               </div>
               <div class="detail-row">
                 <span class="label">Available Quantity:</span>
@@ -135,7 +135,7 @@ const sendOutOfStockNotification = async (product) => {
       
       Product Name: ${product.ProductName}
       Barcode: ${product.ProductBarcode}
-      Price: $${product.ProductPrice}
+      Price: ₹${product.ProductPrice}
       Available Quantity: ${product.ProductAvailable}
       
       Please restock this product as soon as possible.

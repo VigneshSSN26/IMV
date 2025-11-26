@@ -25,9 +25,9 @@ export default function Dashboard() {
   };
 
   const formatCurrency = (amount) => {
-    return new Intl.NumberFormat('en-US', {
+    return new Intl.NumberFormat('en-IN', {
       style: 'currency',
-      currency: 'USD'
+      currency: 'INR'
     }).format(amount);
   };
 
@@ -122,7 +122,7 @@ export default function Dashboard() {
               <div className="d-flex align-items-center">
                 <div className="flex-shrink-0">
                   <div className="bg-success bg-opacity-10 rounded-circle p-3">
-                    <i className="fas fa-dollar-sign text-success fs-4"></i>
+                    <i className="fas fa-rupee-sign text-success fs-4"></i>
                   </div>
                 </div>
                 <div className="flex-grow-1 ms-3">
@@ -407,25 +407,25 @@ export default function Dashboard() {
                 <div className="col-md-3">
                   <div className="text-center p-3 bg-light rounded">
                     <div className="h5 mb-1 text-primary">{priceRanges.under50}</div>
-                    <div className="text-muted small">Under $50</div>
+                    <div className="text-muted small">Under ₹50</div>
                   </div>
                 </div>
                 <div className="col-md-3">
                   <div className="text-center p-3 bg-light rounded">
                     <div className="h5 mb-1 text-info">{priceRanges.between50and200}</div>
-                    <div className="text-muted small">$50 - $200</div>
+                    <div className="text-muted small">₹50 - ₹200</div>
                   </div>
                 </div>
                 <div className="col-md-3">
                   <div className="text-center p-3 bg-light rounded">
                     <div className="h5 mb-1 text-warning">{priceRanges.between200and500}</div>
-                    <div className="text-muted small">$200 - $500</div>
+                    <div className="text-muted small">₹200 - ₹500</div>
                   </div>
                 </div>
                 <div className="col-md-3">
                   <div className="text-center p-3 bg-light rounded">
                     <div className="h5 mb-1 text-success">{priceRanges.over500}</div>
-                    <div className="text-muted small">Over $500</div>
+                    <div className="text-muted small">Over ₹500</div>
                   </div>
                 </div>
               </div>

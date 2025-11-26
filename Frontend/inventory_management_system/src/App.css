@@ -1,0 +1,291 @@
+/* Custom Styles for Professional UI */
+
+/* Container for the entire header */
+.main-header {
+  display: flex !important; /* Enables flex context */
+  justify-content: space-between !important; /* Pushes the logo/nav to the left and user profile to the right */
+  align-items: center !important; /* Vertically centers all items */
+  padding: 10px 20px !important; /* Adds space around the edges of the header */
+  /* background-color: #ffffff; */ /* Optional: uncomment for white background, currently using gradient */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important; /* Subtle shadow for depth */
+}
+
+/* Ensure navbar background doesn't get overridden to white */
+.main-header.navbar-dark {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  background-color: transparent !important;
+}
+
+/* Force white text color on all navbar elements */
+.navbar-dark .navbar-brand,
+.navbar-dark .nav-link,
+.navbar-dark .navbar-text,
+.navbar-dark .navbar-brand i,
+.navbar-dark .nav-link i {
+  color: #ffffff !important;
+}
+
+/* Ensure icons are also white */
+.navbar-dark .fa,
+.navbar-dark .fas,
+.navbar-dark .far,
+.navbar-dark .fab {
+  color: #ffffff !important;
+}
+
+/* Ensure text colors are visible on dark navbar */
+.main-header.navbar-dark .navbar-brand,
+.main-header.navbar-dark .navbar-brand:hover {
+  color: #ffffff !important;
+  opacity: 1 !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.main-header.navbar-dark .nav-link,
+.main-header.navbar-dark .nav-link:hover {
+  color: #ffffff !important;
+  opacity: 1 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Container for the navigation links */
+.main-nav {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem;
+}
+
+/* Ensure profile section is visible and properly aligned */
+.main-header .d-flex.align-items-center.ms-auto {
+  margin-left: auto !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* Ensure navbar collapse shows all content properly */
+.navbar-collapse {
+  display: flex !important;
+  flex-basis: 100%;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Make sure profile/auth buttons are always visible */
+.navbar-collapse > .d-flex.align-items-center {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Ensure navbar text is visible - override any conflicting styles */
+.navbar-dark.navbar .navbar-brand,
+.navbar-dark.navbar .nav-link {
+  color: #ffffff !important;
+  opacity: 1 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-dark.navbar .navbar-brand:hover,
+.navbar-dark.navbar .nav-link:hover {
+  color: #ffffff !important;
+  opacity: 1 !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+/* Ensure all text in navbar is visible */
+.navbar-dark .navbar-text,
+.navbar-dark .btn-outline-light {
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+.navbar-dark .btn-outline-light:hover {
+  background-color: #ffffff !important;
+  color: #667eea !important;
+}
+
+/* Fix for mobile collapse */
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 1rem;
+  }
+  
+  .navbar-collapse > .d-flex.align-items-center {
+    width: 100%;
+    justify-content: flex-end;
+    margin-top: 1rem;
+  }
+}
+
+.add_button {
+    text-align: right;
+}
+
+.tr_color {
+    color: white;
+    background-color: #D83830;
+}
+
+/* Hover Effects */
+.hover-lift {
+    transition: all 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Smooth Animations */
+.card {
+    transition: all 0.3s ease;
+}
+
+.btn {
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Custom Gradient Backgrounds */
+.bg-gradient-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.bg-gradient-success {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+}
+
+.bg-gradient-warning {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+/* Text Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Custom Shadows */
+.shadow-soft {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.shadow-hover {
+    transition: box-shadow 0.3s ease;
+}
+
+.shadow-hover:hover {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+/* Professional Button Styles */
+.btn-professional {
+    border-radius: 50px;
+    padding: 12px 30px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.btn-professional:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Card Enhancements */
+.card-professional {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.card-professional:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Icon Animations */
+.icon-bounce {
+    transition: transform 0.3s ease;
+}
+
+.icon-bounce:hover {
+    transform: scale(1.1);
+}
+
+/* Professional Typography */
+.text-gradient {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Loading States */
+.loading-shimmer {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+/* Responsive Enhancements */
+@media (max-width: 768px) {
+    .display-3 {
+        font-size: 2.5rem;
+    }
+    
+    .lead {
+        font-size: 1.1rem;
+    }
+    
+    .btn-lg {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+}
+

@@ -2,10 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import BarcodeScanner from './BarcodeScanner';
 
 export default function Products() {
   const [productData, setProductData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [adjustQuantity, setAdjustQuantity] = useState(1);
+  const [adjustMode, setAdjustMode] = useState('add');
+  const [showAdjustScanner, setShowAdjustScanner] = useState(false);
+  const [adjustingStock, setAdjustingStock] = useState(false);
 
   useEffect(() => {
     getProducts();
@@ -37,6 +42,44 @@ export default function Products() {
     }
   };
 
+  const openAdjustScanner = (mode) => {
+    setAdjustMode(mode);
+    setShowAdjustScanner(true);
+  };
+
+  const handleAdjustScan = async (barcode) => {
+    setShowAdjustScanner(false);
+    const qty = Math.max(1, Number(adjustQuantity) || 1);
+    const delta = adjustMode === 'add' ? qty : -qty;
+
+    setAdjustingStock(true);
+    try {
+      const response = await axios.post("http://localhost:3001/api/products/adjust-stock", {
+        ProductBarcode: barcode,
+        delta
+      });
+      toast.success(`${response.data.product.ProductName}: ${response.data.message}`);
+      await getProducts();
+    } catch (err) {
+      console.error("Error adjusting stock:", err);
+      toast.error(err.response?.data?.message || "Failed to adjust stock");
+    } finally {
+      setAdjustingStock(false);
+    }
+  };
+
+  const handleAdjustQuantityChange = (e) => {
+    const value = e.target.value;
+    if (value === '') {
+      setAdjustQuantity('');
+      return;
+    }
+    const numeric = Number(value);
+    if (Number.isFinite(numeric) && numeric >= 1) {
+      setAdjustQuantity(numeric);
+    }
+  };
+
   return (
     <div className="container-fluid py-4">
       <div className="row">
@@ -49,10 +92,61 @@ export default function Products() {
               </h1>
               <p className="text-muted">Manage your product inventory efficiently</p>
             </div>
-            <NavLink to="/insertproduct" className="btn btn-primary btn-lg">
-              <i className="fas fa-plus me-2"></i>
-              Add New Product
-            </NavLink>
+            <div className="d-flex flex-column flex-md-row gap-2">
+              <NavLink to="/insertproduct" className="btn btn-primary btn-lg">
+                <i className="fas fa-plus me-2"></i>
+                Add New Product
+              </NavLink>
+              <button
+                type="button"
+                className="btn btn-outline-success btn-lg"
+                onClick={() => openAdjustScanner('add')}
+                disabled={adjustingStock}
+              >
+                <i className="fas fa-arrow-up me-2"></i>
+                Scan to Add Stock
+              </button>
+              <button
+                type="button"
+                className="btn btn-outline-danger btn-lg"
+                onClick={() => openAdjustScanner('remove')}
+                disabled={adjustingStock}
+              >
+                <i className="fas fa-arrow-down me-2"></i>
+                Scan to Remove Stock
+              </button>
+            </div>
+          </div>
+
+          <div className="card border-0 shadow-sm mb-4">
+            <div className="card-body">
+              <div className="row align-items-center g-3">
+                <div className="col-md-4">
+                  <label htmlFor="adjustQuantity" className="form-label fw-semibold mb-0">
+                    <i className="fas fa-hashtag me-2"></i>
+                    Quantity per Scan
+                  </label>
+                  <input
+                    type="number"
+                    min="1"
+                    id="adjustQuantity"
+                    className="form-control"
+                    value={adjustQuantity}
+                    onChange={handleAdjustQuantityChange}
+                    placeholder="1"
+                  />
+                  <div className="form-text">
+                    Each scan will {adjustMode === 'add' ? 'add' : 'remove'} this amount.
+                  </div>
+                </div>
+                <div className="col-md-8">
+                  <div className="alert alert-info mb-0">
+                    <i className="fas fa-info-circle me-2"></i>
+                    Choose whether you want to increase or decrease stock, then hit “Scan”. Once the barcode is read, the stock adjusts automatically.
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           {loading ? (
@@ -143,6 +237,12 @@ export default function Products() {
           )}
         </div>
       </div>
+      {showAdjustScanner && (
+        <BarcodeScanner
+          onScan={handleAdjustScan}
+          onClose={() => setShowAdjustScanner(false)}
+        />
+      )}
     </div>
   );
 }

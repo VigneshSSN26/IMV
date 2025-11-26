@@ -44,6 +44,12 @@ export default function Navbar() {
             {isAuthenticated && (
               <>
                 <li className="nav-item">
+                  <Link className="nav-link fw-semibold" to="/dashboard">
+                    <i className="fas fa-chart-line me-1"></i>
+                    Dashboard
+                  </Link>
+                </li>
+                <li className="nav-item">
                   <Link className="nav-link fw-semibold" to="/products">
                     <i className="fas fa-boxes me-1"></i>
                     Products
